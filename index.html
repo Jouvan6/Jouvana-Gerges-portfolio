@@ -76,6 +76,11 @@ z-index:-1;
 Book Now
 </button>
 
+<button onclick="toggleLanguage()" 
+class="border border-yellow-500 px-4 py-2 rounded-full">
+🌐
+</button>
+
 <ul class="flex gap-6 text-gray-300">
 
 <li><a href="#about">About</a></li>
@@ -104,22 +109,27 @@ Jouvana <span class="gold">Gerges</span>
 <img src="./IMG_20260131_153543.jpg"
 class="w-44 h-44 rounded-full border-4 border-yellow-500 mx-auto mb-8 glow">
 
-<h1 class="text-6xl font-bold">
+<h1 class="text-6xl font-bold"
+data-en="Jouvana Gerges"
+data-ar="جوفانا جرجس">
 
-Jouvana <span class="gold">Gerges</span>
+Jouvana Gerges
 
 </h1>
 
-<h2 class="text-2xl gold mt-4">
+<h2 class="text-2xl gold"
+data-en="Full Stack Web Developer"
+data-ar="مطورة ويب متكاملة">
 
 Full Stack Web Developer
 
 </h2>
 
-<p class="text-gray-400 max-w-xl mx-auto mt-6">
+<p class="text-gray-400"
+data-en="Building exceptional digital experiences using PHP Laravel & .NET"
+data-ar="أبني تجارب رقمية احترافية باستخدام لارافيل و .NET">
 
 Building exceptional digital experiences using PHP Laravel & .NET
-Specialized in scalable web applications.
 
 </p>
 
@@ -451,6 +461,34 @@ LinkedIn: jouvana-gerges-samir
 <script>
 
 AOS.init();
+
+let lang = localStorage.getItem("lang") || "en";
+
+function applyLanguage(){
+
+document.querySelectorAll("[data-en]").forEach(el=>{
+
+el.innerText = el.dataset[lang];
+
+});
+
+document.body.dir = lang === "ar" ? "rtl" : "ltr";
+
+}
+
+function toggleLanguage(){
+
+lang = lang === "en" ? "ar" : "en";
+
+localStorage.setItem("lang", lang);
+
+applyLanguage();
+
+}
+
+applyLanguage();
+
+
 
 </script>
 
